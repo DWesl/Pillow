@@ -53,8 +53,8 @@ jobs:
 
       - name: Test Pillow
         run: |
-          C:\tools\cygwin\bin\dash -c "mv .ci/test.sh .ci/test.sh.dos && /bin/tr -d '\r' <.ci/test.sh.dos >test.sh"
-          C:\tools\cygwin\bin\dash /usr/bin/xvfb-run -s '-screen 0 1024x768x24' .ci/test.sh .8
+          C:\tools\cygwin\bin\dash -c "/bin/tr -d '\r' <.ci/test.sh >test.sh"
+          C:\tools\cygwin\bin\dash /usr/bin/xvfb-run -s '-screen 0 1024x768x24' test.sh .8
 
       - name: After success
         run: |
@@ -66,3 +66,8 @@ jobs:
           file: ./coverage.xml
           flags: GHA_Cygwin
           name: ${{ runner.os }} Cygwin Python 3.8 ${{ matrix.architecture }}
+
+      - name: After failure
+        if: failure()
+        run: |
+          C:\tools\bin\python3.8 -m pip show --files Pillow
