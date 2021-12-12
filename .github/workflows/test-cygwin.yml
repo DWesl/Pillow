@@ -43,17 +43,17 @@ jobs:
 
       - name: Ensure Numpy is recent enough to support Cygwin
         env:
-          FC: C:\tools\cygwin\bin\gfortran
-          F77: C:\tools\cygwin\bin\gfortran
-          F90: C:\tools\cygwin\bin\gfortran
-          CXX: C:\tools\cygwin\bin\g++
+          FC: /bin/gfortran
+          F77: /bin/gfortran
+          F90: /bin/gfortran
+          CXX: /bin/g++
           NPY_DISTUTILS_APPEND_FLAGS: 1
           NPY_BLAS_LIBS: -lblas
           NPY_LAPACK_LIBS: "-llapack -lblas"
           NPY_BLAS_ORDER: openblas,blas
           NPY_LAPACK_ORDER: openblas,lapack 
         run: |
-          C:\tools\cygwin\bin\python3.8 -m pip install --pre --upgrade 'numpy>=1.22.0rc1'
+          C:\tools\cygwin\bin\dash -c "python3.8 -m pip install --pre --upgrade 'numpy>=1.22.0rc1'"
 
       - name: Build Pillow
         run: |
