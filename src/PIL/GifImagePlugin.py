@@ -720,13 +720,15 @@ def _save_netpbm(im, fp, filename):
                 quant_cmd = ["ppmquant", "256", tempfile]
                 togif_cmd = ["ppmtogif"]
                 quant_proc = subprocess.Popen(
-                    quant_cmd, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL
+                    quant_cmd,
+                    stdout=subprocess.PIPE,
+                    # stderr=subprocess.DEVNULL
                 )
                 togif_proc = subprocess.Popen(
                     togif_cmd,
                     stdin=quant_proc.stdout,
                     stdout=f,
-                    stderr=subprocess.DEVNULL,
+                    # stderr=subprocess.DEVNULL,
                 )
 
                 # Allow ppmquant to receive SIGPIPE if ppmtogif exits
