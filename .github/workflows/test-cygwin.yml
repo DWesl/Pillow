@@ -24,6 +24,7 @@ jobs:
             python38-wheel python38-pip python38-olefile
             python38-numpy python38-pytest python38-sphinx
             python38-packaging python38-cffi python38-requests
+            gcc-g++
           install-dir: 'C:\tools\cygwin'
 
       - name: Clean up path
