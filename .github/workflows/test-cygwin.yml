@@ -40,6 +40,19 @@ jobs:
           C:\tools\cygwin\bin\python3.8 -m pip install -r requirements.txt
           C:\tools\cygwin\bin\python3.8 -m pip install pytest-forked
 
+      - name: Ensure Numpy is recent enough to support Cygwin
+        env:
+          FC: gfortran
+          F77: gfortran
+          F90: gfortran
+          NPY_DISTUTILS_APPEND_FLAGS: 1
+          NPY_BLAS_LIBS: -lblas
+          NPY_LAPACK_LIBS: "-llapack -lblas"
+          NPY_BLAS_ORDER: openblas,blas
+          NPY_LAPACK_ORDER: openblas,lapack 
+        run: |
+          C:\tools\cygwin\bin\python3.8 -m pip install --pre --update 'numpy>=1.22.0rc1'
+
       - name: Build Pillow
         run: |
           C:\tools\cygwin\bin\python3.8 setup.py bdist_wheel
