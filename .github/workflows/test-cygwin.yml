@@ -43,9 +43,10 @@ jobs:
 
       - name: Ensure Numpy is recent enough to support Cygwin
         env:
-          FC: gfortran
-          F77: gfortran
-          F90: gfortran
+          FC: C:\tools\cygwin\bin\gfortran
+          F77: C:\tools\cygwin\bin\gfortran
+          F90: C:\tools\cygwin\bin\gfortran
+          CXX: C:\tools\cygwin\bin\g++
           NPY_DISTUTILS_APPEND_FLAGS: 1
           NPY_BLAS_LIBS: -lblas
           NPY_LAPACK_LIBS: "-llapack -lblas"
