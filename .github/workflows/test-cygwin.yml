@@ -49,9 +49,9 @@ jobs:
         run: |
           C:\tools\cygwin\bin\dash -c '/usr/bin/python3.8 -m pip install dist/*.whl'
 
-      - name: Check Pillow configuration
-        run: |
-          C:\tools\cygwin\bin\python3.8 selftest.py
+      # - name: Check Pillow configuration
+      #   run: |
+      #     C:\tools\cygwin\bin\python3.8 selftest.py
 
       - name: Test Pillow
         run: |
