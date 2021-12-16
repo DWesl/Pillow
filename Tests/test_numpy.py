@@ -18,6 +18,7 @@ def test_numpy_to_image():
                 data = list(range(100))
             a = numpy.array(data, dtype=dtype)
             a.shape = TEST_IMAGE_SIZE
+            print(a)
             i = Image.fromarray(a)
             if list(i.getdata()) != data:
                 print("data mismatch for", dtype)

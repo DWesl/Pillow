@@ -405,6 +405,7 @@ def _getdecoder(mode, decoder_name, args, extra=()):
         decoder = getattr(core, decoder_name + "_decoder")
     except AttributeError as e:
         raise OSError(f"decoder {decoder_name} not available") from e
+    print(decoder, mode, args, extra)
     return decoder(mode, *args + extra)
 
 
