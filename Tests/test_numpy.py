@@ -201,6 +201,7 @@ def test_putdata():
         numpy.uint8,
         numpy.uint16,
         numpy.uint32,
+        # Crashes from here on down
         float,
         numpy.float32,
         numpy.float64,
