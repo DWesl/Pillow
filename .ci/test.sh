@@ -4,4 +4,4 @@ set -e
 
 python3$1 -c "from PIL import Image"
 
-python3$1 -bb -m pytest -v -W always --cov PIL --cov Tests --cov-report term Tests $REVERSE
+python3$1 -bb -m pytest -v -W always --cov PIL --cov Tests --cov-report term Tests $REVERSE $2
