@@ -43,7 +43,7 @@ jobs:
 
       - name: Download extra test images
         run: |
-          C:\tools\cygwin\bin\dash depends/install_extra_test_images.sh
+          C:\tools\cygwin\bin\bash depends/install_extra_test_images.sh
 
       - name: Build Pillow
         run: |
