@@ -4,8 +4,7 @@
 # Use SVN to just fetch a single Git subdirectory
 svn_export()
 {
-    if [ ! -z $1 ];
-    then
+    if [ ! -z $1 ]; then
         echo ""
         echo "Retrying svn export..."
         echo ""
