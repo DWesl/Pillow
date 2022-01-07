@@ -741,6 +741,9 @@ class TestFilePng:
             class MyStdOut:
                 buffer = BytesIO()
 
+                def write(self, other: bytes):
+                    return buffer.write(other)
+
             mystdout = MyStdOut()
         else:
             mystdout = BytesIO()

@@ -94,6 +94,9 @@ def test_save_stdout(buffer):
         class MyStdOut:
             buffer = BytesIO()
 
+            def write(self, other: bytes):
+                return self.buffer.write(other)
+
         mystdout = MyStdOut()
     else:
         mystdout = BytesIO()
