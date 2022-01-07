@@ -2,8 +2,20 @@
 Changelog (Pillow)
 ==================
 
-9.0.0 (unreleased)
+9.0.0 (2022-01-02)
 ------------------
+
+- Restrict builtins for ImageMath.eval(). CVE TBD #5923
+  [radarhere]
+
+- Ensure JpegImagePlugin stops at the end of a truncated file #5921
+  [radarhere]
+
+- Fixed ImagePath.Path array handling. CVEs TBD #5920
+  [radarhere]
+
+- Remove consecutive duplicate tiles that only differ by their offset #5919
+  [radarhere]
 
 - Improved I;16 operations on big endian #5901
   [radarhere]

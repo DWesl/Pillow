@@ -628,7 +628,6 @@ class Image:
             and self.size == other.size
             and self.info == other.info
             and self._category == other._category
-            and self.readonly == other.readonly
             and self.getpalette() == other.getpalette()
             and self.tobytes() == other.tobytes()
         )
@@ -717,6 +716,9 @@ class Image:
             args = self.mode
 
         self.load()
+
+        if self.width == 0 or self.height == 0:
+            return b""
 
         # unpack data
         e = _getencoder(self.mode, encoder_name, args)
@@ -813,7 +815,7 @@ class Image:
             palette_length = self.im.putpalette(mode, arr)
             self.palette.dirty = 0
             self.palette.rawmode = None
-            if "transparency" in self.info and mode in ("RGBA", "LA", "PA"):
+            if "transparency" in self.info and mode in ("LA", "PA"):
                 if isinstance(self.info["transparency"], int):
                     self.im.putpalettealpha(self.info["transparency"], 0)
                 else:
