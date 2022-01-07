@@ -41,6 +41,10 @@ jobs:
           C:\tools\cygwin\bin\python3.8 -m pip install -r requirements.txt
           C:\tools\cygwin\bin\python3.8 -m pip install pytest-forked
 
+      - name: Download extra test images
+        run: |
+          C:\tools\cygwin\bin\dash depends/install_extra_test_images.sh
+
       - name: Build Pillow
         run: |
           C:\tools\cygwin\bin\python3.8 setup.py bdist_wheel
