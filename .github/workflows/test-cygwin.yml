@@ -73,7 +73,7 @@ jobs:
       - name: After success
         run: |
           C:\tools\cygwin\bin\mv .ci/after_success.sh .ci/after_success.sh.dos
-          C:\tools\cygwin\bin\dash -c "tr -d '\r' <.ci/after_success.sh.dos >.ci/after_succes.sh"
+          C:\tools\cygwin\bin\dash -c "tr -d '\r' <.ci/after_success.sh.dos >.ci/after_success.sh"
           C:\tools\cygwin\bin\bash .ci/after_success.sh
 
       - name: Upload coverage
