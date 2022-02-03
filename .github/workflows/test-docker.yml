@@ -1,6 +1,27 @@
 name: Test Docker
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    paths:
+      - "!.github/**"
+      - ".github/workflows/test-docker.yml"
+      - "!docs/**"
+      - ".ci/**"
+      - "requirements.txt"
+      - "src/**"
+      - "Tests/**"
+      - "setup.py"
+  pull_request:
+    paths:
+      - "!.github/**"
+      - ".github/workflows/test-docker.yml"
+      - "!docs/**"
+      - ".ci/**"
+      - "requirements.txt"
+      - "src/**"
+      - "Tests/**"
+      - "setup.py"
+  workflow_dispatch:
 
 jobs:
   build:

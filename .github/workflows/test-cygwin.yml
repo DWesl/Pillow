@@ -1,6 +1,27 @@
 name: Test Cygwin
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    paths:
+      - "!.github/**"
+      - ".github/workflows/test-cygwin.yml"
+      - "!docs/**"
+      - ".ci/**"
+      - "requirements.txt"
+      - "src/**"
+      - "Tests/**"
+      - "setup.py"
+  pull_request:
+    paths:
+      - "!.github/**"
+      - ".github/workflows/test-cygwin.yml"
+      - "!docs/**"
+      - ".ci/**"
+      - "requirements.txt"
+      - "src/**"
+      - "Tests/**"
+      - "setup.py"
+  workflow_dispatch:
 
 jobs:
   build:
