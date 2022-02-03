@@ -49,6 +49,11 @@ jobs:
         run: |
           bash.exe .ci/build_cygwin.sh
 
+      - name: Check imports
+        run: |
+          python3.${{ matrix.python-minor-version }} -c 'import numpy as np; print(np.__version__)'
+          python3.${{ matrix.python-minor-version }} selftest.py
+
       - name: Test
         run: |
           bash.exe xvfb-run -s '-screen 0 1024x768x24' .ci/test.sh
