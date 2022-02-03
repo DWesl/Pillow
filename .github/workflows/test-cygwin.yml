@@ -51,8 +51,8 @@ jobs:
 
       - name: Check imports
         run: |
-          python3.${{ matrix.python-minor-version }} -c 'import numpy as np; print(np.__version__)'
-          python3.${{ matrix.python-minor-version }} selftest.py
+          bash.exe -c "python3.${{ matrix.python-minor-version }} -c 'import numpy as np; print(np.__version__)'"
+          bash.exe -c "python3.${{ matrix.python-minor-version }} selftest.py"
 
       - name: Test
         run: |
