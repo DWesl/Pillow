@@ -59,6 +59,11 @@ jobs:
             libxcb-xinerama0 netpbm perl qt5-devel-tools xorg-server-extra zlib-devel
             subversion make
 
+      - name: Check Cygwin install dirs
+        run: |
+          dir C:\cygwin
+          dir C:\cygwin64
+
       - name: Add Lapack to PATH (x86)
         if: ${{ matrix.architecture }} == "x86"
         uses: egor-tensin/cleanup-path@v1
