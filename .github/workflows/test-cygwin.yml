@@ -52,6 +52,7 @@ jobs:
             ImageMagick jpeg python3${{ matrix.python-minor-version }}-cffi
             python3${{ matrix.python-minor-version }}-devel
             python3${{ matrix.python-minor-version }}-numpy
+            python3${{ matrix.python-minor-version }}-cython liblapack-devel
             python3${{ matrix.python-minor-version }}-sip
             python3${{ matrix.python-minor-version }}-tkinter ghostscript
             libfreetype-devel libimagequant-devel libjpeg-devel liblcms2-devel
@@ -79,6 +80,10 @@ jobs:
       - name: Build
         run: |
           bash.exe .ci/build_cygwin.sh
+
+      - name: Install an updated NumPy
+        run: |
+          bash.exe -c "python3.${{ matrix.python-minor-version }} -m pip install -U numpy"
 
       - name: Check imports
         run: |
