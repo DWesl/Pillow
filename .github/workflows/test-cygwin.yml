@@ -52,7 +52,7 @@ jobs:
             ImageMagick jpeg python3${{ matrix.python-minor-version }}-cffi
             python3${{ matrix.python-minor-version }}-devel
             python3${{ matrix.python-minor-version }}-numpy
-            python3${{ matrix.python-minor-version }}-cython liblapack-devel
+            python3${{ matrix.python-minor-version }}-cython liblapack-devel gcc-g++
             python3${{ matrix.python-minor-version }}-sip
             python3${{ matrix.python-minor-version }}-tkinter ghostscript
             libfreetype-devel libimagequant-devel libjpeg-devel liblcms2-devel
