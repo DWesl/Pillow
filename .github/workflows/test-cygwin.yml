@@ -61,20 +61,12 @@ jobs:
 
       - name: Check Cygwin install dirs
         run: |
-          dir C:\cygwin
-          dir C:\cygwin64
+          dir C:\cygwin\lib\lapack
 
-      - name: Add Lapack to PATH (x86)
-        if: ${{ matrix.architecture }} == "x86"
+      - name: Add Lapack to PATH
         uses: egor-tensin/cleanup-path@v1
         with:
           dirs: 'C:\cygwin\bin;C:\cygwin\lib\lapack'
-
-      - name: Add Lapack to PATH (x86_64)
-        if: ${{ matrix.architecture }} == "x86_64"
-        uses: egor-tensin/cleanup-path@v1
-        with:
-          dirs: 'C:\cygwin64\bin;C:\cygwin64\lib\lapack'
 
       - name: Build system information
         run: |
