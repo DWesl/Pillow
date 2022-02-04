@@ -4,6 +4,7 @@
 clean:
 	python3 setup.py clean
 	rm src/PIL/*.so || true
+	rm src/PIL/*.dll || true
 	rm -r build || true
 	find . -name __pycache__ | xargs rm -r || true
 
