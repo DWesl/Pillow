@@ -92,7 +92,7 @@ jobs:
       - name: Prepare to upload errors
         if: failure()
         run: |
-          mkdir -p Tests/errors
+          bash.exe -c "mkdir -p Tests/errors"
 
       - name: Upload errors
         uses: actions/upload-artifact@v2
