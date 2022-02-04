@@ -60,15 +60,15 @@ jobs:
 
       - name: Add Lapack to PATH (x86)
         if: ${{ matrix.architecture }} == "x86"
-        run: |
-          bash.exe -c "echo 'C:\cygwin\lib\lapack' >> $env:GITHUB_PATH"
-          bash.exe -c "echo 'C:\cygwin\bin' >> $env:GITHUB_PATH"
+        uses: egor-tensin/cleanup-path@v1
+        with:
+          dirs: 'C:\cygwin\bin;C:\cygwin\lib\lapack'
 
       - name: Add Lapack to PATH (x86_64)
         if: ${{ matrix.architecture }} == "x86_64"
-        run: |
-          bash.exe -c "echo 'C:\cygwin\lib\lapack' >> $env:GITHUB_PATH"
-          bash.exe -c "echo 'C:\cygwin\bin' >> $env:GITHUB_PATH"
+        uses: egor-tensin/cleanup-path@v1
+        with:
+          dirs: 'C:\cygwin64\bin;C:\cygwin64\lib\lapack'
 
       - name: Build system information
         run: |
