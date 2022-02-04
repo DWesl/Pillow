@@ -57,6 +57,7 @@ jobs:
             libfreetype-devel libimagequant-devel libjpeg-devel liblcms2-devel
             libopenjp2-devel libraqm-devel libtiff-devel libwebp-devel libxcb-devel
             libxcb-xinerama0 netpbm perl qt5-devel-tools xorg-server-extra zlib-devel
+            subversion
 
       - name: Add Lapack to PATH (x86)
         if: ${{ matrix.architecture }} == "x86"
