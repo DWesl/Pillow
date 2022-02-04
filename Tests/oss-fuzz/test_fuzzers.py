@@ -1,3 +1,4 @@
+import os
 import subprocess
 import sys
 
@@ -18,8 +19,7 @@ if features.check("libjpeg_turbo"):
 
 
 @pytest.mark.parametrize(
-    "path",
-    subprocess.check_output("find Tests/images -type f", shell=True).split(b"\n"),
+    "path", [path for path in os.listdir("Tests/images") if os.path.isfile(path)]
 )
 def test_fuzz_images(path):
     fuzzers.enable_decompressionbomb_error()
