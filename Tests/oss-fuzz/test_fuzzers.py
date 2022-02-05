@@ -1,5 +1,4 @@
 import os
-import subprocess
 import sys
 
 import fuzzers
@@ -19,7 +18,13 @@ if features.check("libjpeg_turbo"):
 
 
 @pytest.mark.parametrize(
-    "path", [path for path in os.listdir("Tests/images") if os.path.isfile(path)]
+    "path",
+    [
+        os.path.join(dirname, path)
+        for dirname, subdirs, files in os.walk("Tests/images")
+        for path in files
+        if os.path.isfile(os.path.join(dirname, path))
+    ],
 )
 def test_fuzz_images(path):
     fuzzers.enable_decompressionbomb_error()
@@ -49,7 +54,13 @@ def test_fuzz_images(path):
 
 
 @pytest.mark.parametrize(
-    "path", subprocess.check_output("find Tests/fonts -type f", shell=True).split(b"\n")
+    "path",
+    [
+        os.path.join(dirname, path)
+        for dirname, subdirs, files in os.walk("Tests/fonts")
+        for path in files
+        if os.path.isfile(os.path.join(dirname, path))
+    ],
 )
 def test_fuzz_fonts(path):
     if not path:
