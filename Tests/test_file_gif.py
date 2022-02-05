@@ -1,3 +1,4 @@
+import sys
 from io import BytesIO
 
 import pytest
@@ -247,6 +248,7 @@ def test_palette_434(tmp_path):
 
 
 @pytest.mark.skipif(not netpbm_available(), reason="Netpbm not available")
+@pytest.mark.xfail(sys.platform == "cygwin", reason="Intermittent fork() failures")
 def test_save_netpbm_bmp_mode(tmp_path):
     with Image.open(TEST_GIF) as img:
         img = img.convert("RGB")
