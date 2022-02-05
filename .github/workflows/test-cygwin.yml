@@ -79,7 +79,7 @@ jobs:
 
       - name: Install an updated NumPy
         run: |
-          bash.exe -c "python3.${{ matrix.python-minor-version }} -m pip install -U numpy"
+          bash.exe -c "python3.${{ matrix.python-minor-version }} -m pip install -U 'numpy!=1.21.*'"
 
       - name: Check imports
         run: |
