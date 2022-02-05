@@ -77,10 +77,6 @@ jobs:
         run: |
           bash.exe .ci/install.sh
 
-      - name: Build
-        run: |
-          bash.exe .ci/build_cygwin.sh
-
       - name: Install an updated NumPy
         run: |
           bash.exe -c "python3.${{ matrix.python-minor-version }} -m pip install -U numpy"
@@ -89,6 +85,10 @@ jobs:
         run: |
           bash.exe -c "python3.${{ matrix.python-minor-version }} selftest.py"
           bash.exe -c "python3.${{ matrix.python-minor-version }} -c 'import numpy as np; print(np.__version__)'"
+
+      - name: Build
+        run: |
+          bash.exe .ci/build_cygwin.sh
 
       - name: Test
         run: |
