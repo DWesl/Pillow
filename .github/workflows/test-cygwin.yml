@@ -92,7 +92,7 @@ jobs:
 
       - name: Rebase dlls
         run: |
-          bash.exe -c '/usr/bin/rebase --database $(find /usr/lib/python3.${{ matrix.python-minor-version }}/site-packages src/PIL ${HOME}/.local/lib/ /usr/lib/lapack /usr/bin -name \*.dll -o -name \*.exe)'
+          bash.exe -c '/usr/bin/rebase --database $(find /usr{,/local}/lib/python3.${{ matrix.python-minor-version }}/site-packages src/PIL ${HOME}/.local/lib/ /usr/lib/lapack /usr/bin -name \*.dll -o -name \*.exe)'
 
       - name: Test
         run: |
