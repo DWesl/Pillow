@@ -57,10 +57,10 @@ jobs:
       - name: Ensure correct python minor version used in scripts
         shell: bash.exe -eo pipefail -o igncr "{0}"
         run: |
-          alternatives --set python3 /usr/bin/python3.${{ matrix.python-minor-version }}
-          alternatives --display python3
-          alternatives --set python /usr/bin/python3.${{ matrix.python-minor-version }}
-          alternatives --display python
+          /usr/sbin/alternatives --set python3 /usr/bin/python3.${{ matrix.python-minor-version }}
+          /usr/sbin/alternatives --display python3
+          /usr/sbin/alternatives --set python /usr/bin/python3.${{ matrix.python-minor-version }}
+          /usr/sbin/alternatives --display python
 
       - name: Build system information
         run: |
