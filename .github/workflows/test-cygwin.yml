@@ -85,6 +85,7 @@ jobs:
         run: |
           python3.${{ matrix.python-minor-version }} -m coverage erase
           make clean
+          CFLAGS="-coverage -Werror=implicit-function-declaration" python3.${{ matrix.python-minor-version }} setupy.py build_ext
           CFLAGS="-coverage -Werror=implicit-function-declaration" python3.${{ matrix.python-minor-version }} -m pip install -v --global-option="build_ext" .
           python3.${{ matrix.python-minor-version }} selftest.py
 
