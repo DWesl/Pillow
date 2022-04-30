@@ -643,6 +643,8 @@ class pil_build_ext(build_ext):
                     feature.jpeg = "jpeg"
                 elif sys.platform == "win32" and _find_library_file(self, "libjpeg"):
                     feature.jpeg = "libjpeg"  # alternative name
+                elif sys.platform == "cygwin" and _find_library_file(self, "libjpeg.dll"):
+                    feature.jpeg = "jpeg"
 
         feature.openjpeg_version = None
         if feature.want("jpeg2000"):
