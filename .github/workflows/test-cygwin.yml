@@ -60,7 +60,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          dash.exe -c "python3.${{ matrix.python-minor-version }} -m pip install -U pip 'setuptools<60' wheel"
+          dash.exe -c "python3.${{ matrix.python-minor-version }} -m pip install -U pip 'setuptools' wheel"
           bash.exe .ci/install.sh
 
       - name: Rebase dependency dlls before build
@@ -68,6 +68,11 @@ jobs:
         shell: bash.exe -eo pipefail -o igncr "{0}"
         run: |
           /usr/bin/rebase --database $(find /usr{,/local}/lib/python3.${{ matrix.python-minor-version }}/site-packages src/PIL ${HOME}/.local/lib/ /usr/lib/lapack /usr/bin -name \*.dll -o -name \*.exe)
+
+      - name: Install Setuptools<60 for NumPy and Pillow
+        shell: dash.exe -l "{0}"
+        run: |
+          python3.${{ matrix.python-minor-version }} -m pip install 'setuptools<60'
 
       - name: Install a different NumPy
         if: matrix.architecture == 'x86_64'
