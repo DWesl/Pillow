@@ -63,6 +63,12 @@ jobs:
           dash.exe -c "python3.${{ matrix.python-minor-version }} -m pip install -U pip"
           bash.exe .ci/install.sh
 
+      - name: Rebase dependency dlls before build
+        # Probably only needed on x86
+        shell: bash.exe -eo pipefail -o igncr "{0}"
+        run: |
+          /usr/bin/rebase --database $(find /usr{,/local}/lib/python3.${{ matrix.python-minor-version }}/site-packages src/PIL ${HOME}/.local/lib/ /usr/lib/lapack /usr/bin -name \*.dll -o -name \*.exe)
+
       - name: Install a different NumPy
         if: matrix.architecture == 'x86_64'
         shell: dash.exe -l "{0}"
@@ -82,7 +88,7 @@ jobs:
           CFLAGS="-coverage -Werror=implicit-function-declaration" python3.${{ matrix.python-minor-version }} -m pip install -v --global-option="build_ext" .
           python3.${{ matrix.python-minor-version }} selftest.py
 
-      - name: Rebase dlls
+      - name: Rebase Pillow dlls before test
         shell: bash.exe -eo pipefail -o igncr "{0}"
         run: |
           /usr/bin/rebase --database $(find /usr{,/local}/lib/python3.${{ matrix.python-minor-version }}/site-packages src/PIL ${HOME}/.local/lib/ /usr/lib/lapack /usr/bin -name \*.dll -o -name \*.exe)
