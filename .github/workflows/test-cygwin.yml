@@ -60,7 +60,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          dash.exe -c "python3.${{ matrix.python-minor-version }} -m pip install -U pip 'setuptools' wheel"
+          dash.exe -c "python3.${{ matrix.python-minor-version }} -m pip install -U pip 'setuptools<60' wheel"
           bash.exe .ci/install.sh
 
       - name: Rebase dependency dlls before build
@@ -68,11 +68,6 @@ jobs:
         shell: bash.exe -eo pipefail -o igncr "{0}"
         run: |
           /usr/bin/rebase --database $(find /usr{,/local}/lib/python3.${{ matrix.python-minor-version }}/site-packages src/PIL ${HOME}/.local/lib/ /usr/lib/lapack /usr/bin -name \*.dll -o -name \*.exe)
-
-      - name: Install Setuptools<60 for NumPy and Pillow
-        shell: dash.exe -l "{0}"
-        run: |
-          python3.${{ matrix.python-minor-version }} -m pip install 'setuptools<60'
 
       - name: Install a different NumPy
         if: matrix.architecture == 'x86_64'
@@ -93,6 +88,12 @@ jobs:
           CFLAGS="-coverage -Werror=implicit-function-declaration" python3.${{ matrix.python-minor-version }} setup.py build_ext
           CFLAGS="-coverage -Werror=implicit-function-declaration" python3.${{ matrix.python-minor-version }} -m pip install -v --global-option="build_ext" .
           python3.${{ matrix.python-minor-version }} selftest.py
+
+      - name: Install Setuptools>=60 and Coverage
+        shell: dash.exe -l "{0}"
+        run: |
+          python3.${{ matrix.python-minor-version }} -m pip install -U 'setuptools'
+          python3.${{ matrix.python-minor-version }} -m pip install coverage
 
       - name: Rebase Pillow dlls before test
         shell: bash.exe -eo pipefail -o igncr "{0}"
