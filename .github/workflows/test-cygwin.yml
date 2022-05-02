@@ -80,6 +80,12 @@ jobs:
         run: |
           python3.${{ matrix.python-minor-version }} -c 'import numpy as np; print(np.__version__)'
 
+      - name: Install Setuptools>=60 and Coverage
+        shell: dash.exe -l "{0}"
+        run: |
+          python3.${{ matrix.python-minor-version }} -m pip install -U 'setuptools'
+          python3.${{ matrix.python-minor-version }} -m pip install coverage
+
       - name: Build
         shell: bash.exe -eo pipefail -o igncr "{0}"
         run: |
@@ -88,12 +94,6 @@ jobs:
           CFLAGS="-coverage -Werror=implicit-function-declaration" python3.${{ matrix.python-minor-version }} setup.py build_ext
           CFLAGS="-coverage -Werror=implicit-function-declaration" python3.${{ matrix.python-minor-version }} -m pip install -v --global-option="build_ext" .
           python3.${{ matrix.python-minor-version }} selftest.py
-
-      - name: Install Setuptools>=60 and Coverage
-        shell: dash.exe -l "{0}"
-        run: |
-          python3.${{ matrix.python-minor-version }} -m pip install -U 'setuptools'
-          python3.${{ matrix.python-minor-version }} -m pip install coverage
 
       - name: Rebase Pillow dlls before test
         shell: bash.exe -eo pipefail -o igncr "{0}"
