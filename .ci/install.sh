@@ -23,8 +23,9 @@ if [[ $(uname) != CYGWIN* ]]; then
     sudo apt-get -qq install libfreetype6-dev liblcms2-dev python3-tk\
                              ghostscript libffi-dev libjpeg-turbo-progs libopenjp2-7-dev\
                              cmake meson imagemagick libharfbuzz-dev libfribidi-dev
-    python3 -m pip install --upgrade pip
-elif [[ $(uname -m) != i*86 ]]; then
+fi
+
+if [[ $(uname -mo) != "i*86 Cygwin" ]]; then
     python3 -m pip install --upgrade pip
 else
     python3 -m pip install --upgrade 'pip<22'
