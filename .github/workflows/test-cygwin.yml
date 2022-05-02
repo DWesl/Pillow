@@ -61,7 +61,7 @@ jobs:
       - name: Install dependencies
         shell: bash.exe -eo pipefail -o igncr "{0}"
         run: |
-          python3.${{ matrix.python-minor-version }} -m pip install -U pip 'setuptools<60' wheel
+          python3.${{ matrix.python-minor-version }} -m pip install -U 'setuptools<60' wheel
           bash.exe .ci/install.sh
 
       - name: Rebase dependency dlls before build
