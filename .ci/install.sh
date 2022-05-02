@@ -27,8 +27,6 @@ fi
 
 if [[ $(uname -mo) != "i*86 Cygwin" ]]; then
     python3 -m pip install --upgrade pip
-else
-    python3 -m pip install --upgrade 'pip<22'
 fi
 
 python3 -m pip install --upgrade wheel
