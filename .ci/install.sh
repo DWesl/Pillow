@@ -26,7 +26,7 @@ if [[ $(uname) != CYGWIN* ]]; then
 fi
 
 uname -mo
-if [[ $(uname -mo) != "i*86 Cygwin" ]]; then
+if [[ $(uname -mo) != i*86" Cygwin" ]]; then
     python3 -m pip install --upgrade pip
 fi
 
